@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Paola ❤️</title>
+    <style>
+        :root {
+            --primary: #4a90e2;
+            --secondary: #ff6b9d;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(circle at center, #0a2342 0%, #000 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        .parallax-container {
+            perspective: 1000px;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .content {
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .title-container {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #ff6b9d, #4a90e2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .subtitle-special {
+            font-size: 1.8rem;
+            color: #fff;
+            margin: 1rem 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
+        }
+
+        .from-text {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 1.5rem;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 2s;
+        }
+
+        .heart-decoration {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart-left {
+            left: -40px;
+            top: 50%;
+        }
+
+        .heart-right {
+            right: -40px;
+            top: 50%;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(255,107,157,0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(74,144,226,0.7));
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4rem 2rem;
+            transform-style: preserve-3d;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem;
+            max-width: 600px;
+            position: relative;
+            transform: translateZ(0);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateZ(50px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .card h2 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .card p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .stitch-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 2rem;
+            position: relative;
+            transition: transform 0.5s ease;
+            box-shadow: 0 0 30px rgba(255,107,157,0.3);
+        }
+
+        .stitch-img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .heart-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255,107,157,0.5);
+        }
+
+        .heart-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .heart-button:hover::before {
+            left: 100%;
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            animation: floatUp var(--duration) linear forwards;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translate(var(--x), -100vh) rotate(var(--r));
+                opacity: 0;
+            }
+        }
+
+        .message-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            display: none;
+            text-align: center;
+            background: rgba(0,0,0,0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255,107,157,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            .subtitle-special {
+                font-size: 1.3rem;
+            }
+            .from-text {
+                font-size: 1.2rem;
+            }
+            .card {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            .stitch-img {
+                width: 200px;
+                height: 200px;
+            }
+            .heart-decoration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="parallax-container">
+        <div class="content">
+            <header>
+                <div class="header-content">
+                    <div class="title-container">
+                        <span class="heart-decoration heart-left">❤️</span>
+                        <h1 class="main-title">Paola Ovando</h1>
+                        <span class="heart-decoration heart-right">❤️</span>
+                        <p class="subtitle-special">Mi Razón de Sonreír Cada Día</p>
+                        <p class="from-text">Con Todo Mi Amor, Baeza</p>
+                    </div>
+                    <img src="IMG/fea571822ae5c669d3561dbc91836f75.jpg" alt="Stitch Love" class="stitch-img">
+                </div>
+            </header>
+
+            <section class="section">
+                <div class="card">
+                    <h2>Mi Universo</h2>
+                    <p>Como Stitch encontró su lugar en la Tierra, yo encontré mi universo entero en ti. Cada sonrisa tuya es como una estrella que ilumina mi mundo, cada momento juntos es una nueva galaxia por descubrir.</p>
+                    <p>En este viaje llamado vida, tú eres mi compañera perfecta, mi Ohana, mi todo. Cada día a tu lado es una aventura que hace latir mi corazón con más fuerza.</p>
+                    <img src="IMG/20cbe5eed95493a60d4ccac62a1b1ed0.jpg" alt="Stitch Love" class="stitch-img">
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="card">
+                    <h2>Nuestras Aventuras</h2>
+                    <p>Cada día contigo es una nueva aventura, llena de risas, amor y momentos inolvidables. Como Stitch y Lilo, juntos somos imparables, únicos y especiales.</p>
+                    <p>No importa lo que nos depare el futuro, sé que mientras estemos juntos, todo estará bien. Tu amor me da la fuerza para superar cualquier obstáculo.</p>
+                    <img src="IMG/imgstich.jpg" alt="Stitch Love" class="stitch-img">
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="card">
+                    <h2>Mi Promesa Eterna</h2>
+                    <p>Te prometo estar siempre a tu lado, en los momentos buenos y en los difíciles. Como las estrellas que guían a los navegantes, mi amor por ti será tu luz constante.</p>
+                    <p>Eres el amor de mi vida, mi compañera perfecta, mi razón de ser mejor cada día. Este San Valentín quiero recordarte cuánto significas para mí.</p>
+                    <button class="heart-button" onclick="showLove()">Te Amo ❤️</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="message-container" id="message">
+        <h2>¡Te Amo Infinitamente! ❤️</h2>
+        <p>Cada día me enamoro más de ti, Paola</p>
+    </div>
+
+    <script>
+        function createStars() {
+            const stars = document.getElementById('stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+                stars.appendChild(star);
+            }
+        }
+
+        function handleParallax() {
+            const cards = document.querySelectorAll('.card');
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                cards.forEach(card => {
+                    const speed = 0.5;
+                    const yPos = -(scrolled * speed);
+                    card.style.transform = `translateZ(${yPos}px)`;
+                });
+            });
+        }
+
+        function showLove() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createHeart, i * 150);
+            }
+            
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 3000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '0';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            heart.style.setProperty('--x', (Math.random() - 0.5) * 200 + 'px');
+            heart.style.setProperty('--r', Math.random() * 360 + 'deg');
+            heart.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            handleParallax();
+        });
+    </script>
+</body>
+</html>
