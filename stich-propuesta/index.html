@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta de San Valentín</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="3" fill="%23ffffff22"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .main-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            width: 90%;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1),
+                        0 1px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            flex: 1;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            color: #ff4b6a;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin: 2rem 0;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .question:hover {
+            transform: translateY(-5px);
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff4b6a 0%, #ff6b8b 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 75, 106, 0.2);
+            width: 100%;
+            max-width: 300px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 75, 106, 0.3);
+            background: linear-gradient(135deg, #ff3d5f 0%, #ff5b7f 100%);
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: floatHeart 4s ease-in-out forwards;
+            z-index: 10;
+        }
+
+        .stitch-container {
+            width: 300px;
+            animation: bounce 2s infinite;
+            margin-left: 2rem;
+        }
+
+        .stitch-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(360deg) translate(100px, -100vh);
+                opacity: 0;
+            }
+        }
+
+        .success-message {
+            display: none;
+            color: #ff4b6a;
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            animation: fadeIn 0.5s ease-in;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stitch-dance {
+            animation: stitchDance 1s infinite !important;
+        }
+
+        @keyframes stitchDance {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                transform: scale(1.1) rotate(-5deg);
+            }
+            50% {
+                transform: scale(1) rotate(0deg);
+            }
+            75% {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column-reverse;
+            }
+
+            .stitch-container {
+                width: 200px;
+                margin: 0 auto;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <h1>❤️ Preguntas Especiales ❤️</h1>
+            
+            <div class="question">
+                <button onclick="showHearts(this, '¿Quieres ser mi San Valentín?')">
+                    ¿Quieres ser mi San Valentín? 💝
+                </button>
+                <div class="success-message"></div>
+            </div>
+
+            <div class="question">
+                <button onclick="showHearts(this, '¿Quieres casarte conmigo?')">
+                    ¿Quieres casarte conmigo? 💍
+                </button>
+                <div class="success-message"></div>
+            </div>
+        </div>
+
+        <div class="stitch-container">
+            <img src="IMG/580-5807482_stitch-clipart.png" alt="Stitch" class="stitch-img" />
+        </div>
+    </div>
+
+    <script>
+        function showHearts(button, question) {
+            // Mostrar mensaje de éxito
+            const successMessage = button.nextElementSibling;
+            successMessage.style.display = 'block';
+            successMessage.textContent = '¡Sí! 💖';
+            
+            // Crear corazones
+            for (let i = 0; i < 30; i++) {
+                createHeart(button);
+            }
+
+            // Hacer que Stitch baile
+            const stitch = document.querySelector('.stitch-container');
+            stitch.classList.add('stitch-dance');
+            setTimeout(() => {
+                stitch.classList.remove('stitch-dance');
+            }, 2000);
+        }
+
+        function createHeart(button) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+    </script>
+</body>
+</html>
